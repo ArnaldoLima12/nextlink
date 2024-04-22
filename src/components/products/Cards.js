@@ -1,7 +1,23 @@
 const { Card, Button } = require("react-bootstrap");
 
-const Cards =  ({itemName, itemPrice, itemDescription, itemPhoto}) =>
-{
+const Cards =  ({itemName, itemPrice, itemDescription, itemPhoto, addCart}) =>
+{   
+
+    const addItemToCard = () =>
+    {
+      if(addCart)
+      {
+        const newItem = {
+          name: itemName,
+          price: itemPrice,
+          description: itemDescription,
+          photo: itemPhoto
+        };
+
+        addCart(newItem);
+      }
+    }
+
     return(
        
         <Card style={{width: '15rem', minHeight: '21rem'}} bg="dark" text="white">
@@ -16,7 +32,7 @@ const Cards =  ({itemName, itemPrice, itemDescription, itemPhoto}) =>
                 {itemDescription}
             </Card.Text>
             
-            <Button variant="success" className="button-add-cart" style={{width: '100%'}}> <strong className="button-add-cart">R$ {itemPrice}</strong> <i class="bi bi-cart-plus hidden"></i></Button>
+            <Button variant="success" className="button-add-cart" style={{width: '100%'}} onClick={addItemToCard}> <strong className="button-add-cart">R$ {itemPrice}</strong> <i class="bi bi-cart-plus hidden"></i></Button>
           </Card.Body>
         
         </Card>

@@ -1,8 +1,9 @@
 import { useState } from "react";
+import Cart from "../products/Cart";
 
 const { Offcanvas, Button } = require("react-bootstrap");
 
-const Header = () =>
+const Header = ({cardCount, item, price}) =>
 {   
     const [show, setShow] = useState(false);
 
@@ -10,6 +11,7 @@ const Header = () =>
     const close = () => setShow(false);
 
     return(
+
         <header className="flex items-center justify-start gap-2 bg-black text-white p-2 z-10" style={{position: 'fixed', width: '100%'}}>
             
             <nav>
@@ -22,6 +24,8 @@ const Header = () =>
 
             <Button onClick={open} variant="dark"><i className="bi bi-list text-white"></i></Button>
             <h1 className="m-0 tracking-widest text-2xl">nextLink</h1>
+            
+            <Cart countItens={cardCount} itens={item} totalPrice={price}/>
         </header>
     );
 }
